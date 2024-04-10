@@ -1,7 +1,7 @@
 import toast from "react-hot-toast"
 export const useUser = () =>{
     const get_user =async () =>{
-        const url = "http://localhost:5000/api/users"
+        const url = "https://devtalk-chat-app.onrender.com/api/users"
         // const token = cookies.get('jwt');
         // console.log("This is token ",document.cookie)
         try {

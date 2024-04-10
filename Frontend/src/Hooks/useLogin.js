@@ -8,7 +8,7 @@ import { AuthContext } from "../../Context/AuthContext"
 export const useLogin = () =>{
     const {setAuthUser} = useContext(AuthContext)
     const [loading, setLoading] = useState(false)
-    const url = "http://localhost:5000/api/auth/login"
+    const url = "https://devtalk-chat-app.onrender.com/api/auth/login"
     const navigate = useNavigate()
     const login =async ({userName,password})=>{
         try {

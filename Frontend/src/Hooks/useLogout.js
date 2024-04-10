@@ -11,7 +11,7 @@ export const useLogout = () =>{
     const logout =async () =>{
         try {
             setLoading(true)
-            const url = "http://localhost:5000/api/auth/logout"
+            const url = "https://devtalk-chat-app.onrender.com/api/auth/logout"
             const res =await fetch(url,{
                 method: "POST",
             })

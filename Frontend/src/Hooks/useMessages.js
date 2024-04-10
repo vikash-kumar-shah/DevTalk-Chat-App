@@ -1,6 +1,6 @@
 export const useMessages = ()=>{
     const get_message =async (uid)=>{
-        const url = `http://localhost:5000/api/message/${uid}`
+        const url = `https://devtalk-chat-app.onrender.com/api/message/${uid}`
         try {
             // console.log(uid)
             const res =await fetch(url,{
