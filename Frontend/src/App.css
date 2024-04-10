@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.parent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 98.58vh;
+    width: 99.7vw;
+    background-color: #E6E6E6;
+}

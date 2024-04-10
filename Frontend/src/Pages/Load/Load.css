@@ -1,0 +1,38 @@
+.main-loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    background-color: transparent;
+  }
+  
+.preloader{
+    height: 1vh;
+    width: 20vw;
+background-color: #3498dba7;
+position: relative;
+overflow: hidden;
+}
+
+.preloader::after {
+content: '';
+width: 50%;
+height: 100%;
+background-color: #ffffff4f;
+position: absolute;
+left: -40px;
+animation: preloaderAnimation 1s infinite ease-in-out;
+}
+
+@keyframes preloaderAnimation {
+0% {
+    left: -40px;
+}
+
+100% {
+    left: 100%;
+}
+}
+  
