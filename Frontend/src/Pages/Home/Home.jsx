@@ -28,7 +28,7 @@ function Home() {
   const [count,setCount] = useState(0)
   const [latestMessage, setLatestMessage]= useState([])
   const [displaySecond, setDisplaySecond] = useState(true);
-  const [displayThird, setDisplayThird] = useState(true);
+  const [displayThird, setDisplayThird] = useState(false);
 
 
 
@@ -42,10 +42,10 @@ function Home() {
           setDisplaySecond(true);  
           setDisplayThird(true);
         }
-        else{
-            setDisplaySecond(true);  
-            setDisplayThird(false); 
-        }
+        // else{
+        //     setDisplaySecond(true);  
+        //     setDisplayThird(false); 
+        // }
       
       };
 
