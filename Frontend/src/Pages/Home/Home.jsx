@@ -43,14 +43,8 @@ function Home() {
           setDisplayThird(true);
         }
         else{
-          if(localStorage.getItem("prev")){
             setDisplaySecond(true);  
             setDisplayThird(false); 
-          }
-          else{
-            setDisplaySecond(false);  
-            setDisplayThird(true);
-          }
         }
       
       };
