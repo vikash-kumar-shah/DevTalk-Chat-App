@@ -388,7 +388,7 @@
 
     .second{
         width: 90%;
-        /* display: none; */
+        display: block;
     }
     .third{
         width: 90%;
@@ -466,7 +466,7 @@
     }
     .second{
         width: 90%;
-        /* display: none; */
+        display: block;
     }
     .third{
         width: 90%;

@@ -27,6 +27,8 @@ function Home() {
   const {onlineUsers} = useContext(SocketContext)
   const [count,setCount] = useState(0)
   const [latestMessage, setLatestMessage]= useState([])
+  const [displaySecond, setDisplaySecond] = useState(true);
+  const [displayThird, setDisplayThird] = useState(true);
 
 
 
@@ -37,14 +39,23 @@ function Home() {
       const handleResize = () => {
         const width= window.innerWidth
         if(width>640) {
-          document.querySelector(".third").style.display="block";
-          document.querySelector(".second").style.display="block";
+          setDisplaySecond(true);  
+          setDisplayThird(true);
         }
         else{
-          document.querySelector(".third").style.display="none";
+          if(localStorage.getItem("prev")){
+            setDisplaySecond(true);  
+            setDisplayThird(false); 
+          }
+          else{
+            setDisplaySecond(false);  
+            setDisplayThird(true);
+          }
         }
+      
       };
 
+      handleResize();
       window.addEventListener('resize', handleResize);
 
       return () => {
@@ -107,8 +118,9 @@ function Home() {
   const handleback = () =>{
     if (window.innerWidth <= 640)
     {
-      document.querySelector(".second").style.display="block"
-      document.querySelector(".third").style.display="none"
+      setDisplaySecond(true);  
+      setDisplayThird(false); 
+      localStorage.setItem("prev",true)
     }
   }
 
@@ -116,8 +128,9 @@ function Home() {
   const handleuser =async (e) =>{
     if (window.innerWidth <= 640)
     {
-      document.querySelector(".second").style.display="none"
-      document.querySelector(".third").style.display="block"
+      setDisplaySecond(false);
+      setDisplayThird(true);
+      localStorage.setItem("prev",false)
     }
     const name = e.currentTarget.getAttribute('name')
     const profile = e.currentTarget.getAttribute('profile')
@@ -133,20 +146,16 @@ function Home() {
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault(); // Prevent default behavior (e.g., line break in textarea)
+      e.preventDefault();
       sendMessage();
     }
   };
 
   const sendMessage =async () =>{
-    // console.log(chatMessage)
     await send_message(selectedUser.uid,chatMessage)
     setChatMessage("")
-    // setSelectedUser(prev=>({...prev}))
     setSelectedUser(prevUser => ({ ...prevUser }));
-    // setNotification((notification+1)%2)
     setNotification(prevNotification => (prevNotification + 1) % 2);
-    // setCount((count+1)%2)
     setCount(prevCount => (prevCount + 1) % 2);
   }
 
@@ -167,7 +176,7 @@ function Home() {
         <img src={authUser.profilePic} className='profile' />
         <i className="fa-solid fa-arrow-right-from-bracket" id="logout" style={{color: "#FFFFFF"}} onClick={handlelogout}></i>
       </div>
-      <div className="second">
+      <div className="second" style={{ display: displaySecond ? 'block' : 'none' }}>
         <div className="search-bar">
           <input type="text" id="input" value={searchUser} onChange={handleSearch}/>
           <i className="fa-solid fa-magnifying-glass" style={{color: "#FFFFFF"}} id="search" onClick={focus}></i>
@@ -182,7 +191,7 @@ function Home() {
           ))}
         </div>
       </div>
-      <div className="third">
+      <div className="third" style={{ display: displayThird ? 'block' : 'none' }}>
         {!selectedUser.state && <Third/>}
         {selectedUser.state && <><div className="top">
             <img src={selectedUser.profile} className='individual-profile-2' />
